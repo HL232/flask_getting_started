@@ -26,10 +26,12 @@ def distance_input(list):
 
 @app.route("/distance", methods=["POST"])
 def distance():
+    r = request.get_json()
+    print(r)
     output = {
-             "distance": distance_input(([2, 4], [5, 6])),
-             "a": [2, 4],
-             "b": [5, 6]
+             "distance": distance_input((r["a"], r["b"])),
+             "a": r["a"],
+             "b": r["b"]
             }
     return jsonify(output)
 
